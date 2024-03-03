@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import top.fatbird.didadi.dto.AccessTokenDTO;
 import top.fatbird.didadi.dto.GithubUser;
+import top.fatbird.didadi.mapper.UserMapper;
+import top.fatbird.didadi.model.User;
 import top.fatbird.didadi.provider.GithubProvider;
 
 import java.io.IOException;
+import java.util.UUID;
 
 @Controller
 public class AuthorizeController {
@@ -26,6 +29,8 @@ public class AuthorizeController {
     private String clientSecret;
     @Value("${github.redirect.uri}")
     private  String redirectUri;
+    @Autowired
+    private UserMapper userMapper;
     @GetMapping("/callback")
     public String callback(@RequestParam(name="code") String code,
                            @RequestParam(name="state") String state,
@@ -37,10 +42,17 @@ public class AuthorizeController {
         accessTokenDTO.setRedirect_uri(redirectUri);
         accessTokenDTO.setState(state);
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
-        GithubUser user =githubProvider.getUser(accessToken);
-        if (user !=null){
+        GithubUser githubUser =githubProvider.getUser(accessToken);
+        if (githubUser !=null){
             //登陆成功，写cookie和session
-            request.getSession().setAttribute("user",user);
+            User user =new User();
+            user.setToken(UUID.randomUUID().toString());
+            user.setName(githubUser.getName());
+            user.setAccountId(String.valueOf(githubUser.getId()));
+            user.setGmtCreate(System.currentTimeMillis());
+            user.setGmtModified(user.getGmtCreate());
+            userMapper.insert(user);
+            request.getSession().setAttribute("user",githubUser);
             return "redirect:/";
         }else{
             //登录失败，重新登录

@@ -2,9 +2,10 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>didadi-首页</title>
+    <title>发布事件-didadi</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css"/>
     <link rel="stylesheet" href="./css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="./css/didadi.css"/>
     <script src="./js/bootstrap.min.js" type="application/javascript"></script>
 </head>
 <body>
@@ -38,12 +39,48 @@
                     </ul>
                 </li>
                 <li th:if ="${session.user == null}">
-                    <a href="/propose">登录</a>
+                    <a href="/login">登录</a>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" style="background-color: #66afe9">
+            <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发起事件</h2>
+            <form action="/propose" method="post">
+            <div class="form-group">
+                <label for="title">事件标题</label>
+                <input type="text" class="form-control" id="title" placeholder="title">
+            </div>
+            <div class="form-group">
+                <label for="description">Password</label>
+                <textarea name="description" id="description" class="from-control" cols="30" rows="10"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="tags">添加标签</label>
+                <input type="text" class="form-control" id="tags" placeholder="choose tags">
+            </div>
+            <div class="form-group">
+                <label for="expect_time">选择日期</label>
+                <input type="date" class="form-control" id="expect_time" placeholder="choose date">
+            </div>
+            <div class="form-group">
+                <label for="expect_number">期望召集人数</label>
+                <input type="number" class="form-control" id="expect_number" placeholder="expected number of people">
+            </div>
+            <div class="form-group">
+                <label for="location">输入地点</label>
+                <input type="text" class="form-control" id="location" placeholder="input location">
+            </div>
+            <button type="submit" class="btn btn-success btn-publish">发布</button>
+        </form>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" style="background-color: #67b168">
+            <h3>当前标签下的事件：</h3>
+        </div>
+    </div>
+</div>
 </body>
-<
+</html>
