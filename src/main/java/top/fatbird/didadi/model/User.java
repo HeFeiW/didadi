@@ -5,6 +5,8 @@ public class User {
     private String name;
     private String accountId;
     private  String token;
+    private  String password;
+    private Integer sex;
     private  Long gmtCreate;
     private  Long gmtModified;
 
@@ -54,5 +56,21 @@ public class User {
 
     public void setGmtModified(Long gmtModified) {
         this.gmtModified = gmtModified;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
     }
 }

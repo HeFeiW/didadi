@@ -39,7 +39,7 @@ public class ProposeController {
         proposal.setExpectTime(expectTime);
         proposal.setExpectNumber(expectNumber);
         proposal.setLocation(location);
-        Cookie[] cookies=request.getCookies();
+        /*Cookie[] cookies=request.getCookies();
         for (Cookie cookie : cookies){
             if(cookie.getName().equals("token")){
                 String token =cookie.getValue();
@@ -50,6 +50,7 @@ public class ProposeController {
                 break;
             }
         }
+        */
         proposalsMapper.create(proposal);
         return "propose";
     }

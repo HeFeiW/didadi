@@ -1,20 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>signup-didadi</title>
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../static/css/bootstrap-theme.min.css"/>
-    <script src="../static/js/bootstrap.min.js" type="application/javascript"></script>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title>注册-didadi</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="./css/didadi.css"/>
+    <script src="./js/bootstrap.min.js" type="application/javascript"></script>
 </head>
 <body>
-<div class="input-group">
-    <form action="/login" method="post">
-        <input type="text" name="username" placeholder="username"><br />
-        <input type="password" name="password" placeholder="password"><br />
-        <input type="submit">
+<div class="container-fluid">
+    <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span>注册</h2>
+    <form action="/" method="post">
+        <div class="form-group">
+            <label for="account_id">ID（唯一辨识符，注册成功后不可更改）</label>
+            <input type="text" class="form-control" id="account_id" placeholder="account id">
+        </div>
+        <div class="form-group">
+            <label for="password">设置密码</label>
+            <input type="password" class="form-control" id="password" placeholder="set your password">
+        </div>
+        <div class="form-group">
+            <label for="password_confirm">确认密码</label>
+            <input type="password" class="form-control" id="password_confirm" placeholder="set your password again">
+        </div>
+        <button type="submit" class="btn btn-success btn-publish">注册</button>
     </form>
+    <div>
+        <p>注册成功后将自动跳转到首页，建议您先在“个人资料-修改个人资料”中完善资料</p>
+    </div>
+    <div>
+        <h3>已有账户？</h3>>
+        <a href="/login">登录</a>
+    </div>
 </div>
-
 </body>
 </html>

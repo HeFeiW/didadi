@@ -31,14 +31,14 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" th:text="${session.user.getName()}"><span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">消息中心</a></li>
-                        <li><a href="#">个人资料</a></li>
+                        <li><a href="/profile">个人资料</a></li>
                         <li><a href="#">退出登录</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="#">Separated link</a></li>
                     </ul>
                 </li>
                 <li th:if ="${session.user == null}">
-                    <a href="/propose">登录</a>
+                    <a href="/login">登录</a>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
