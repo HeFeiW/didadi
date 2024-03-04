@@ -11,20 +11,20 @@
 <body>
 <div class="container-fluid">
     <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span>注册</h2>
-    <form action="/" method="post">
+    <form action="/signup" method="post">
         <div class="form-group">
             <label for="account_id">ID（唯一辨识符，注册成功后不可更改）</label>
-            <input type="text" class="form-control" id="account_id" placeholder="account id">
+            <input type="text" class="form-control" name="account_id" id="account_id" placeholder="account id">
         </div>
         <div class="form-group">
             <label for="password">设置密码</label>
-            <input type="password" class="form-control" id="password" placeholder="set your password">
+            <input type="password" class="form-control" name="password" id="password" placeholder="set your password">
         </div>
         <div class="form-group">
             <label for="password_confirm">确认密码</label>
-            <input type="password" class="form-control" id="password_confirm" placeholder="set your password again">
+            <input type="password" class="form-control" name="password_confirm" id="password_confirm" placeholder="set your password again">
         </div>
-        <button type="submit" class="btn btn-success btn-publish">注册</button>
+        <button type="submit" class="btn btn-success">注册</button>>
     </form>
     <div>
         <p>注册成功后将自动跳转到首页，建议您先在“个人资料-修改个人资料”中完善资料</p>

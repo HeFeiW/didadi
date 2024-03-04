@@ -52,7 +52,7 @@
             <form action="/propose" method="post">
             <div class="form-group">
                 <label for="title">事件标题</label>
-                <input type="text" class="form-control" id="title" placeholder="title">
+                <input name="title" type="text" class="form-control" id="title" placeholder="title">
             </div>
             <div class="form-group">
                 <label for="description">事件描述</label>
@@ -60,19 +60,19 @@
             </div>
             <div class="form-group">
                 <label for="tags">添加标签</label>
-                <input type="text" class="form-control" id="tags" placeholder="choose tags">
+                <input name="tags" type="text" class="form-control" id="tags" placeholder="choose tags">
             </div>
             <div class="form-group">
                 <label for="expect_time">选择日期</label>
-                <input type="date" class="form-control" id="expect_time" placeholder="choose date">
+                <input name="expect_time" type="date" class="form-control" id="expect_time" placeholder="choose date">
             </div>
             <div class="form-group">
                 <label for="expect_number">期望召集人数</label>
-                <input type="number" class="form-control" id="expect_number" placeholder="expected number of people">
+                <input name="expect_number" type="number" class="form-control" id="expect_number" placeholder="expected number of people">
             </div>
             <div class="form-group">
                 <label for="location">输入地点</label>
-                <input type="text" class="form-control" id="location" placeholder="input location">
+                <input name="location" type="text" class="form-control" id="location" placeholder="input location">
             </div>
             <button type="submit" class="btn btn-success btn-publish">发布</button>
         </form>

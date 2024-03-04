@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,27 +27,22 @@ public class SignupController {
             @RequestParam("account_id") String accountId,
             @RequestParam("password") String password,
             HttpServletRequest request,
-            HttpServletResponse response)
+            HttpServletResponse response
+    )
     {
-        boolean validId;
-        if (accountId !=null){
-            validId=true;
-        }else{validId=false;}
-        if (true){
-            //有效id，写cookie和session
+
+
             User user =new User();
             String token=UUID.randomUUID().toString();
             user.setToken(token);
             user.setName("new_user_"+accountId);
+            user.setPassword(password);
             user.setAccountId(accountId);
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
             userMapper.insert(user);
             response.addCookie(new Cookie("token",token));
-            return "/";
-        }else{
-            //登录失败，重新登录
-            return "/";
-        }
+            return "redirect:/";
+
     }
 }

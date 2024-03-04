@@ -8,8 +8,8 @@ import top.fatbird.didadi.model.User;
 
 @Mapper
 public interface UserMapper {
-    @Insert("insert into users (account_name,account_id,token,gmt_create,gmt_modified) values (#{name},#{accountId},#{token},#{gmtCreate},#{gmtModified})")
+    @Insert("insert into users (name,accountid,token,gmtcreate,gmtmodified,encryptpwd) values (#{name},#{accountId},#{token},#{gmtCreate},#{gmtModified},#{password})")
     void insert(User user);
-    @Select("select * users where token=#{token}")
+    @Select("select * from users where token=#{token}")
     User findByToken(@Param("token") String token);
 }
