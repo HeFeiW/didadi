@@ -1,93 +1,46 @@
 <!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org">
-
+<html>
+...
 <body>
-
-<div th:fragment="nav">
+...
+<div th:fragment="navigation">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">didadi</span>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">HIdidadi</span>
                 </button>
-                <a class="navbar-brand" href="/">didadi</a>
+                <a class="navbar-brand" href="#">didadi</a>
             </div>
 
+            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <form class="navbar-form navbar-left" action="/" method="get">
+                <form class="navbar-form navbar-left">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="search" placeholder="搜索标签">
+                        <input type="text" class="form-control" placeholder="搜索标签">
                     </div>
                     <button type="submit" class="btn btn-default">搜索</button>
                 </form>
-                <ul class="nav navbar-nav">
-                    <script>
-                        function clickNav(label) {
-                            gtag('event', 'click', {
-                                'event_category': 'LINK',
-                                'event_label': label,
-                                'transport_type': 'NAV'
-                            })
-                        }
-                    </script>
-                    <li th:each="ad : ${#httpServletRequest.getServletContext().getAttribute('NAV')}">
-                        <a th:href="${ad.url}" th:text="${ad.title}" th:onclick="clickNav([[${ad.title}]])"
-                           target="_blank"></a>
-                    </li>
-                </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li th:if="${session.user != null}">
-                        <a href="/propose">找搭子</a>
-                    </li>
-                    <li><a href="/profile/proposals">我的申请<span class="badge" th:text="${session.unreadCount}"></span></a>
+                        <a href="/propose">发布事件</a>
                     </li>
                     <li class="dropdown" th:if="${session.user != null}">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">
-                            <span th:text="${session.user.getName()}"></span>
-                            <span class="caret"></span>
-                        </a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ><span th:text="${session.user.getName()}"></span><span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/profile/questions">我的问题</a></li>
-                            <li><a href="/logout">退出登录</a></li>
+                            <li><a href="/profile">个人资料</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/login">退出登录</a></li>
                         </ul>
                     </li>
-                    <li th:if="${session.user == null}">
-                        <!--                        <a th:href="@{https://github.com/login/oauth/authorize(client_id='7f316909bf70d1eaa2b2',redirect_uri=${#httpServletRequest.getServletContext().getAttribute('redirectUri')},scope='user',state=1)}">登录</a>-->
-                        <a href="#" data-toggle="modal" data-target="#myModal">登录</a>
+                    <li th:if ="${session.user == null}">
+                        <a href="/login">登录</a>
                     </li>
-
                 </ul>
-            </div>
-        </div>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
     </nav>
-
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document" style="margin-top: 200px;width: 300px;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">登录注册</h4>
-                </div>
-                <div class="modal-body" style="text-align:center">
-                    <a th:href="@{https://gitee.com/oauth/authorize(client_id='e542c33bb680ea612ce21b8efb397274eae34833553bc80bc9ff881425d1b883',redirect_uri=${#httpServletRequest.getServletContext().getAttribute('giteeRedirectUri')},response_type=code)}">
-                        <img src="/images/gitee.png">
-                    </a>
-                    <a th:href="@{https://github.com/login/oauth/authorize(client_id='7f316909bf70d1eaa2b2',redirect_uri=${#httpServletRequest.getServletContext().getAttribute('githubRedirectUri')},scope='user',state=1)}">
-                        <img src="/images/github.png">
-                    </a>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
-
 </body>
-
 </html>

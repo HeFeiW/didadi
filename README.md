@@ -12,19 +12,9 @@ Gtihub认证登录、获取用户信息：[Github OAuth](https://docs.github.com
 [OkHttp](https://square.github.io/okhttp/)，
 
 数据库管理框架[MyBatis](https://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/)
-## 工具
+数据库迁移工具[flyway](https://flywaydb.org/)
+## 待办
+signup密码加密
+完善ui
 
-## 脚本
-```sql
-create table USERS
-(
-ID           INTEGER auto_increment,
-NAME         CHARACTER VARYING(100),
-ACCOUNT_ID   CHARACTER VARYING(50),
-TOKEN        CHARACTER(36),
-GMT_CREATE   BIGINT,
-GMT_MODIFIED BIGINT,
-constraint USERS_PK
-primary key (ID)
-);
-```
+

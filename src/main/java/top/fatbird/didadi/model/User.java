@@ -9,6 +9,7 @@ public class User {
     private Integer sex;
     private  Long gmtCreate;
     private  Long gmtModified;
+    private  String avatarUrl;
 
     public Integer getId() {
         return id;
@@ -72,5 +73,13 @@ public class User {
 
     public void setSex(Integer sex) {
         this.sex = sex;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }

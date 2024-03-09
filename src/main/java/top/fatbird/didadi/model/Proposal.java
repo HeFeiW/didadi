@@ -11,7 +11,7 @@ public class Proposal {
     private String location;
     private Integer expectNumber;
     private Integer recruitedNumber;
-    private Integer creator;
+    private String creator;
     private Long gmtCreate;
 
     public Integer getId() {
@@ -78,11 +78,11 @@ public class Proposal {
         this.recruitedNumber = recruitedNumber;
     }
 
-    public Integer getCreator() {
+    public String getCreator() {
         return creator;
     }
 
-    public void setCreator(Integer creator) {
+    public void setCreator(String creator) {
         this.creator = creator;
     }
 
