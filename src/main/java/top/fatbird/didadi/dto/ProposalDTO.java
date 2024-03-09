@@ -13,7 +13,7 @@ public class ProposalDTO {
     private String location;
     private Integer expectNumber;
     private Integer recruitedNumber;
-    private String creator;
+    private Integer creator;
     private Long gmtCreate;
     private User user;
 
@@ -81,11 +81,11 @@ public class ProposalDTO {
         this.recruitedNumber = recruitedNumber;
     }
 
-    public String getCreator() {
+    public Integer getCreator() {
         return creator;
     }
 
-    public void setCreator(String creator) {
+    public void setCreator(Integer creator) {
         this.creator = creator;
     }
 

@@ -4,11 +4,13 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import top.fatbird.didadi.enumeration.Sex;
 import top.fatbird.didadi.mapper.UserMapper;
 import top.fatbird.didadi.model.User;
 
@@ -16,6 +18,8 @@ import java.util.UUID;
 
 @Controller
 public class SignupController {
+    @Value("${user.default.avatar_url}")
+    private String defaultAvatar;
     @Autowired
     private UserMapper userMapper;
     @GetMapping("/signup")
@@ -39,6 +43,8 @@ public class SignupController {
             user.setAccountId(accountId);
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
+            user.setAvatarUrl(defaultAvatar);
+            user.setSex(Sex.SECRET);
             userMapper.insert(user);
             response.addCookie(new Cookie("token",token));
             return "redirect:/";

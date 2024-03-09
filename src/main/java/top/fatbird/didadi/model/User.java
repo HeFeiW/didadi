@@ -1,12 +1,14 @@
 package top.fatbird.didadi.model;
 
+import top.fatbird.didadi.enumeration.Sex;
+
 public class User {
     private  Integer id;
     private String name;
     private String accountId;
     private  String token;
     private  String password;
-    private Integer sex;
+    private Sex sex;
     private  Long gmtCreate;
     private  Long gmtModified;
     private  String avatarUrl;
@@ -67,11 +69,11 @@ public class User {
         this.password = password;
     }
 
-    public Integer getSex() {
+    public Sex getSex() {
         return sex;
     }
 
-    public void setSex(Integer sex) {
+    public void setSex(Sex sex) {
         this.sex = sex;
     }
 

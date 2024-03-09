@@ -75,9 +75,10 @@ public class ProposeController {
         }
         proposal.setExpectNumber(expectNumber);
         proposal.setLocation(location);
-        proposal.setCreator(user.getAccountId());
+        proposal.setCreator(user.getId());
         proposal.setGmtCreate(System.currentTimeMillis());
         proposal.setGmtModified(proposal.getGmtCreate());
+        proposal.setRecruitedNumber(0);
         proposalsMapper.create(proposal);
         return "/propose";
     }

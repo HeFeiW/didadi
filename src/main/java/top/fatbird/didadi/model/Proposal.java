@@ -11,8 +11,10 @@ public class Proposal {
     private String location;
     private Integer expectNumber;
     private Integer recruitedNumber;
-    private String creator;
+    private Integer creator;
     private Long gmtCreate;
+    private Long gmtModified;
+    private Integer viewCount;
 
     public Integer getId() {
         return id;
@@ -78,11 +80,11 @@ public class Proposal {
         this.recruitedNumber = recruitedNumber;
     }
 
-    public String getCreator() {
+    public Integer getCreator() {
         return creator;
     }
 
-    public void setCreator(String creator) {
+    public void setCreator(Integer creator) {
         this.creator = creator;
     }
 
@@ -110,7 +112,6 @@ public class Proposal {
         this.viewCount = viewCount;
     }
 
-    private Long gmtModified;
-    private Integer viewCount;
+
 
 }

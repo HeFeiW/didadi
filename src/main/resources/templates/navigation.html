@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
-...
 <body>
-...
 <div th:fragment="navigation">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -31,7 +29,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="/profile">个人资料</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="/login">退出登录</a></li>
+                            <li><a href="/#">退出登录</a></li>
                         </ul>
                     </li>
                     <li th:if ="${session.user == null}">
@@ -42,5 +40,15 @@
         </div><!-- /.container-fluid -->
     </nav>
 </div>
+<script type="text/javascript">
+    function confirmLogOut(){
+        var show = $(".dialog").css("display");
+        $(".dialog").css("display",show =="none"?"block":"none");
+    }
+    function close(){
+        var show = $(".dialog").css("display");
+        $(".dialog").css("display",show =="none"?"block":"none");
+    }
+</script>
 </body>
 </html>

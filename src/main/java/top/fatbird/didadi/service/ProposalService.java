@@ -22,7 +22,7 @@ public class ProposalService {
         List<Proposal> proposals = proposalsMapper.list();
         List<ProposalDTO> proposalDTOList = new ArrayList<>();
         for (Proposal proposal : proposals){
-            User user = userMapper.findByAccountId(proposal.getCreator());
+            User user = userMapper.findById(proposal.getCreator());
             ProposalDTO proposalDTO = new ProposalDTO();
             BeanUtils.copyProperties(proposal,proposalDTO);
             proposalDTO.setUser(user);
