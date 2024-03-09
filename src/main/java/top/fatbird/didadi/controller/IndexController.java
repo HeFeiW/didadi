@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import top.fatbird.didadi.dto.ProposalDTO;
 import top.fatbird.didadi.mapper.UserMapper;
 import top.fatbird.didadi.model.User;
+import top.fatbird.didadi.service.ProposalService;
+
+import java.util.List;
 
 
 @Controller
@@ -16,8 +19,12 @@ import top.fatbird.didadi.model.User;
 public class IndexController {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private ProposalService proposalService;
     @GetMapping("/")
-    public String index(HttpServletRequest request)
+    public String index(HttpServletRequest request,
+                        Model model
+    )
     {
         Cookie[] cookies=request.getCookies();
         if(cookies !=null && cookies.length != 0)
@@ -31,6 +38,9 @@ public class IndexController {
                 break;
             }
         }
+
+        List<ProposalDTO> proposalList= proposalService.list();
+        model.addAttribute("proposals",proposalList);
         return "/index";
     }
 }

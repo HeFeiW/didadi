@@ -26,7 +26,6 @@ public class SignupController {
     public String doSignup(
             @RequestParam("account_id") String accountId,
             @RequestParam("password") String password,
-            HttpServletRequest request,
             HttpServletResponse response
     )
     {

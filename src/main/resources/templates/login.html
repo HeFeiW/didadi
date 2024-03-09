@@ -9,10 +9,16 @@
 </head>
 <body>
 <div class="input-group">
-   <form action="/" method="post">
-       <input type="text" name="username" placeholder="username"><br />
+   <form action="/login" method="post">
+       <input type="text" name="user_id" placeholder="user id (not username)"><br />
        <input type="password" name="password" placeholder="password"><br />
-       <input type="submit">
+       <div class="container-fluid main">
+           <div class="row">
+               <div class="alert alert-danger col-lg-9 col-md-12 col-sm-12 col-xs-12" th:text="${error}"
+                    th:if="${error != null}"></div>
+               <br/><button type="submit" class="btn btn-success">登录</button>
+           </div>
+       </div>
    </form>
 </div>
 <div>

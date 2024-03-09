@@ -3,10 +3,15 @@ body{
     background-color: lightblue;
 }
 .main{
-    background-color: white;
+    background-color: lightcyan;
     margin: 30px;
 }
 .btn-publish{
     float: right;
     margin-bottom: 15px;
+}
+.media-info{
+    font-size: 12px;
+    font-weight: normal;
+    color: #999999;
 }
