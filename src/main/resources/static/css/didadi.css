@@ -73,3 +73,8 @@ body{
     max-width: 90px;
     max-height: 90px;
 }
+.proposal-info{
+    font: 20px Helvetica,Arial,sans-serif;
+    font-weight: normal;
+    color: #555555;
+}

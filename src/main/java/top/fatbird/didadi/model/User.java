@@ -8,7 +8,7 @@ public class User {
     private String accountId;
     private  String token;
     private  String password;
-    private Sex sex;
+    private Integer sex;
     private  Long gmtCreate;
     private  Long gmtModified;
     private  String avatarUrl;
@@ -70,11 +70,11 @@ public class User {
         this.password = password;
     }
 
-    public Sex getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(Sex sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 

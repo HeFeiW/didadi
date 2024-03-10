@@ -1,9 +1,6 @@
 package top.fatbird.didadi.mapper;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import top.fatbird.didadi.model.User;
 
 @Mapper
@@ -16,4 +13,6 @@ public interface UserMapper {
     User findById(@Param("id") Integer creator);
     @Select("select * from users where ACCOUNT_ID=#{account_id}")
     User findByAccountId(@Param("account_id") String userId);
+@Update("update USERS set name=#{name},AVATAR_URL=#{avatarUrl},SEX=#{sex} where ID=#{id}")
+    void update(User user);
 }

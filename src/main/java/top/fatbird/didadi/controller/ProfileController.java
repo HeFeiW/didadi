@@ -1,6 +1,7 @@
 package top.fatbird.didadi.controller;
 
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,16 +25,24 @@ public class ProfileController {
             @RequestParam("name") String name,
             @RequestParam("avatar_url") String avatarUrl,
             @RequestParam("sex") Integer sex,
+            HttpServletRequest request,
             HttpServletResponse response
     )
     {
-
-
-        User user =new User();
-        user.setSex(Sex.getSex(sex));
-        user.setGmtModified(System.currentTimeMillis());
-        userMapper.insert(user);
-        return "/";
+        Cookie[] cookies=request.getCookies();
+        if(cookies !=null && cookies.length != 0)
+            for (Cookie cookie : cookies){
+                if(cookie.getName().equals("token")){
+                    String token=cookie.getValue();
+                    User user=userMapper.findByToken(token);
+                    user.setSex(sex);
+                    user.setName(name);
+                    user.setGmtModified(System.currentTimeMillis());
+                    userMapper.update(user);
+                    break;
+                }
+            }
+        return "redirect:/";
 
     }
 }

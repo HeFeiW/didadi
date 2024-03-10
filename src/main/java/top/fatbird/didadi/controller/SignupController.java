@@ -44,7 +44,7 @@ public class SignupController {
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
             user.setAvatarUrl(defaultAvatar);
-            user.setSex(Sex.SECRET);
+            user.setSex(3);
             userMapper.insert(user);
             response.addCookie(new Cookie("token",token));
             return "redirect:/";
