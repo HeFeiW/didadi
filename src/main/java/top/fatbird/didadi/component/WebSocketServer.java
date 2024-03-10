@@ -5,6 +5,7 @@ import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import jakarta.websocket.*;
+import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
 
 import org.slf4j.Logger;
@@ -16,13 +17,13 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-@ServerEndpoint(value = "/imserver/{username}")
+@ServerEndpoint(value = "/imserver/{uid}")
 @Component
 public class WebSocketServer {
     private static final Logger log=LoggerFactory.getLogger(WebSocketServer.class);
     public static Map<String, Session> sessionMap = new ConcurrentHashMap<>();
     @OnOpen
-    public void onOpen(Session session, @PathVariable("uid") String uid){
+    public void onOpen(Session session, @PathParam("uid") String uid){
         sessionMap.put(uid,session);
         log.info("用户ID{}上线，当前在线人数{}",uid,sessionMap.size());
         JSONObject result = new JSONObject();
@@ -36,13 +37,14 @@ public class WebSocketServer {
         sendAllMessage(JSON.toJSONString(result));
     }
     @OnClose
-    public void onClose(Session session, @PathVariable("uid") String uid){
+    public void onClose(Session session, @PathParam("uid") String uid){
         sessionMap.remove(uid);
         log.info("ID{}用户连接关闭，移除其session，当前在线人数为{}",uid,sessionMap.size());
 
     }
     @OnMessage
-    public void onMessage(String message, Session session, @PathVariable("uid") String uid) {
+    public void onMessage(String message, Session session) {
+        String sdToken=session.getId()
         log.info("服务端收到ID{}的消息：{}", uid, message);
         JSONObject obj = JSON.parseObject(message);
         String toUid = obj.getString("to");
