@@ -30,4 +30,13 @@ public class ProposalService {
         }
         return proposalDTOList;
     }
+
+    public ProposalDTO findById(Integer id) {
+        Proposal proposal= proposalsMapper.findById(id);
+        ProposalDTO proposalDTO = new ProposalDTO();
+        BeanUtils.copyProperties(proposal,proposalDTO);
+        User user = userMapper.findById(proposal.getCreator());
+        proposalDTO.setUser(user);
+        return proposalDTO;
+    }
 }

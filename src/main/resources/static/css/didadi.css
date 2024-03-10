@@ -61,3 +61,15 @@ body{
     font-weight: bold;
     text-decoration: none;
 }
+.avatar-sm{
+    max-width: 30px;
+    max-height: 30px;
+}
+.avatar-md{
+    max-width: 60px;
+    max-height: 60px;
+}
+.avatar-mx{
+    max-width: 90px;
+    max-height: 90px;
+}

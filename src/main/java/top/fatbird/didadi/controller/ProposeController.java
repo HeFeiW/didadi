@@ -30,12 +30,12 @@ public class ProposeController {
     }
     @PostMapping("/propose")
     public  String doPropose(
-            @RequestParam("title") String title,
-            @RequestParam("description") String description,
-            @RequestParam("tag") String tag,
-            @RequestParam("expect_time") String expectTime,
-            @RequestParam("expect_number") Integer expectNumber,
-            @RequestParam("location") String location,
+            @RequestParam(value = "title",required = false) String title,
+            @RequestParam(value = "description",required = false) String description,
+            @RequestParam(value = "tag",required = false) String tag,
+            @RequestParam(value = "expect_time",required = false) String expectTime,
+            @RequestParam(value = "expect_number",required = false) Integer expectNumber,
+            @RequestParam(value = "location",required = false) String location,
             HttpServletRequest request,
             Model model
     )
@@ -53,15 +53,21 @@ public class ProposeController {
                     break;
                 }
             }
-        if (user==null){
-            model.addAttribute("error","用户未登录");
-            return "/signup";
-        }
         model.addAttribute("title",title);
+        model.addAttribute("description",description);
         model.addAttribute("tag",tag);
         model.addAttribute("location",location);
         model.addAttribute("expectTime",expectTime);
         model.addAttribute("expectNumber",expectNumber);
+
+        if (user==null){
+            model.addAttribute("error","用户未登录");
+            return "/signup";
+        }
+        if (title == null || title == ""){
+            model.addAttribute("error","标题不能为空");
+            return "/propose";
+        }
 
         DateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd");
         Proposal proposal =new Proposal();
@@ -80,6 +86,6 @@ public class ProposeController {
         proposal.setGmtModified(proposal.getGmtCreate());
         proposal.setRecruitedNumber(0);
         proposalsMapper.create(proposal);
-        return "/propose";
+        return "redirect:/";
     }
 }

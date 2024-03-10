@@ -19,33 +19,41 @@
             <form action="/propose" method="post">
             <div class="form-group">
                 <label for="title">事件标题</label>
-                <input name="title" type="text" class="form-control" id="title" placeholder="title">
+                <input name="title" type="text" class="form-control" id="title" placeholder="title" th:value="${title}">
             </div>
             <div class="form-group">
                 <label for="description">事件描述</label>
-                <textarea name="description" id="description" class="from-control" cols="30" rows="10"></textarea>
+                <textarea name="description" id="description" class="from-control" cols="30" rows="10">${description}</textarea>
             </div>
             <div class="form-group">
                 <label for="tag">添加标签</label>
-                <input name="tag" type="text" class="form-control" id="tag" placeholder="choose tags">
+                <input name="tag" type="text" class="form-control" id="tag" placeholder="choose tags"
+                       th:value="${tag}">
             </div>
             <div class="form-group">
                 <label for="expect_time">选择日期</label>
-                <input name="expect_time" type="date" class="form-control" id="expect_time" placeholder="choose date">
+                <input name="expect_time" type="date" class="form-control" id="expect_time" placeholder="choose date"
+                       th:value="${expectTime}">
             </div>
             <div class="form-group">
                 <label for="expect_number">期望召集人数</label>
-                <input name="expect_number" type="number" class="form-control" id="expect_number" placeholder="expected number of people">
+                <input name="expect_number" type="number" class="form-control" id="expect_number"
+                       th:value="${expectNumber}" placeholder="expected number of people">
             </div>
             <div class="form-group">
                 <label for="location">输入地点</label>
-                <input name="location" type="text" class="form-control" id="location" placeholder="input location">
+                <input name="location" type="text" class="form-control" id="location" placeholder="input location"
+                       th:value="${location}">
             </div>
             <div class="container-fluid main">
                 <div class="row">
-                    <div class="alert alert-danger col-lg-9 col-md-12 col-sm-12 col-xs-12" th:text="${error}"
-                         th:if="${error != null}"></div>
-                    <br/><button type="submit" class="btn btn-success">发布</button>
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                        <div class="alert alert-danger col-lg-9 col-md-12 col-sm-12 col-xs-12" th:text="${error}"
+                             th:if="${error != null}"></div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                    <button type="submit" class="btn btn-success btn-publish">发布</button>
                 </div>
             </div>
         </form>
@@ -55,5 +63,9 @@
         </div>
     </div>
 </div>
+
+<script th:inline="javascript">
+    document.getElementById("description").value=[[${description}]]
+</script>
 </body>
 </html>

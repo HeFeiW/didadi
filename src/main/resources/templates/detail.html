@@ -2,23 +2,79 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>事件信息-didadi</title>
+    <title>首页-didadi</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css"/>
     <link rel="stylesheet" href="./css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="./css/didadi.css"/>
     <script src="./js/jquery-3.7.1.min.js"></script>
     <script src="./js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="./js/didadi.js"></script>
 </head>
 <body>
 <div th:insert="~{navigation :: nav}"></div>
 <div class="container-fluid main">
     <div class="row">
-        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" >
-            <h2><span class="glyphicon glyphicon-flag" aria-hidden="true">事件标题</span></h2>
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 ">
+            <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span> 发现</h2>
+            <div class="media">
+                <div class="media-body">
+                    <a th:href="'/detail/'+${proposal.id}">
+                        <h4 class="media-heading" th:text="${proposal.title}"></h4>
+                    </a>
+                    <span class="media-info" >
+                         <span class="media-info-tagholder">
+                            <span>标签：</span>
+                            <span th:text="${proposal.tag}"></span>
+                        </span><br>
+                        <span class="media-info-desc">
+                            <span>描述：</span>
+                            <span th:text="${proposal.description}"></span>
+                        </span><br>
+                        <span class="media-info-loc">
+                            <span>地点：</span>
+                            <span th:text="${proposal.location}"></span>
+                        </span><br>
+                        <span class="media-info-date">
+                            <span>已招募人数</span>
+                            <span th:text="${proposal.recruitedNumber}+'/'+${proposal.expectNumber}"></span>
+                        </span><br>
+                        <span class="media-info-num">
+                            <span>发布时间：</span>
+                            <span th:text="${#dates.format(proposal.gmtCreate,'yyyy-MM-dd HH:mm:ss')}"></span>
+                        </span>
 
+                    </span>
+                </div>
+            </div>
         </div>
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-            <h3>当前标签下的其它事件：</h3>
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" id="user-info">
+                <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 发起人：
+                    <span th:text="${proposal.user.name}"></span>
+                </h2>
+                <div class="media">
+                    <div class="media-middle">
+                        <a href="#">
+                            <img class="media-object avatar-mx"  th:src="${proposal.user.avatarUrl}" alt="头像加载失败">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                    <span class="media-info" >
+                         <span class="uid">
+                            <span>ID：</span>
+                            <span th:text="${proposal.user.accountId}"></span>
+                        </span><br>
+                        <span class="media-info-desc">
+                            <span th:text="${proposal.user.bio}"></span>
+                        </span><br>
+                    </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" id="p-relate">
+                <h2><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>相关事件</h2>
+            </div>
+
         </div>
     </div>
 </div>
